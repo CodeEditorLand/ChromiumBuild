@@ -173,7 +173,7 @@ for ((i = 0; i < index_tasks; i++)); do
   index_next
 done
 
-# Do a wait loop. Bash waits that terminate due a trap have an exit
+# Do a wait loop. Bash \waits that terminate due a trap have an exit
 # code > 128. We also ensure that our subshell's "normal" exit occurs with
 # an exit code > 128. This allows us to do consider a > 128 exit code as
 # an indication that the loop should continue. Unfortunately, it also means
