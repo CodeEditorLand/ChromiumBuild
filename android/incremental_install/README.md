@@ -2,7 +2,7 @@
 
 Incremental Install is a way of building & deploying an APK that tries to
 minimize the time it takes to make a change and see that change running on
-device. They work best with `is_component_build=true`, and do *not* require a
+device. They work best with `is_component_build=true`, and do _not_ require a
 rooted device.
 
 ## Building
@@ -43,23 +43,23 @@ than bundling them in the .apk. Then, when making a change, only the changed
 
 Faster Builds:
 
- * No `final_dex` step (where all .dex files are merged into one)
- * No need to rebuild .apk for code-only changes (but required for resources)
- * Apks sign faster because they are smaller.
+-   No `final_dex` step (where all .dex files are merged into one)
+-   No need to rebuild .apk for code-only changes (but required for resources)
+-   Apks sign faster because they are smaller.
 
 Faster Installs:
 
- * The .apk is smaller, and so faster to verify.
- * No need to run `adb install` for code-only changes.
- * Only changed .so / .dex files are pushed. MD5s of existing on-device files
-   are cached on host computer.
+-   The .apk is smaller, and so faster to verify.
+-   No need to run `adb install` for code-only changes.
+-   Only changed .so / .dex files are pushed. MD5s of existing on-device files
+    are cached on host computer.
 
 Slower Initial Runs:
 
- * The first time you run an incremental .apk, the `DexOpt` needs to run on all
-   .dex files. This step is normally done during `adb install`, but is done on
-   start-up for incremental apks.
-   * DexOpt results are cached, so subsequent runs are much faster
+-   The first time you run an incremental .apk, the `DexOpt` needs to run on all
+    .dex files. This step is normally done during `adb install`, but is done on
+    start-up for incremental apks.
+    -   DexOpt results are cached, so subsequent runs are much faster
 
 ## The Code
 
@@ -67,9 +67,9 @@ All incremental apks have the same classes.dex, which is built from:
 
     //build/android/incremental_install:bootstrap_java
 
-They also have a transformed `AndroidManifest.xml`, which overrides the the
-main application class and any instrumentation classes so that they instead
-point to `BootstrapApplication`. This is built by:
+They also have a transformed `AndroidManifest.xml`, which overrides the the main
+application class and any instrumentation classes so that they instead point to
+`BootstrapApplication`. This is built by:
 
     //build/android/incremental_install/generate_android_manifest.py
 
